@@ -20,11 +20,11 @@ The service does almost nothing today — it just needs to *exist*, *build*, *ru
 
 **Acceptance criteria**
 - [x ] A Maven-based Spring Boot project (Java 21) is generated and opens in IntelliJ without errors.
-- [ ] `mvn clean package` completes successfully and produces a runnable JAR.
-- [ ] The application starts locally and stays up.
-- [ ] A `GET /ping` (or similar) endpoint returns a hardcoded 200 response (e.g. `"pong"`).
-- [ ] The project is a Git repository with an initial commit and a `.gitignore` that excludes build output and IDE files.
-- [ ] You can articulate, in a sentence each, what `pom.xml` and `@SpringBootApplication` do.
+- [x ] `mvn clean package` completes successfully and produces a runnable JAR.
+- [x ] The application starts locally and stays up.
+- [x ] A `GET /ping` (or similar) endpoint returns a hardcoded 200 response (e.g. `"pong"`).
+- [x ] The project is a Git repository with an initial commit and a `.gitignore` that excludes build output and IDE files.
+- [x ] You can articulate, in a sentence each, what `pom.xml` and `@SpringBootApplication` do.
 
 **Look into:** what `start.spring.io` generates and why; the Maven build lifecycle (`validate`/`compile`/`test`/`package`); JAR vs running app; dependencies in `pom.xml`; `@SpringBootApplication`; Java 21 features (records, `var`, `Optional`, streams, text blocks); how the same project looks in Gradle.
 - Maven build lifecycle: https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html
@@ -40,7 +40,7 @@ The service does almost nothing today — it just needs to *exist*, *build*, *ru
 
 ## Day 2 — Cat REST API in memory
 
-> **As a** vet clinic receptionist,
+``> **As a** vet clinic receptionist,
 > **I want** to register cats and look them up, update them, and remove them,
 > **so that** the clinic has an up-to-date list of the cats it treats.
 
@@ -62,9 +62,9 @@ Build the full set of cat operations over HTTP, holding data in memory (no datab
 - Spring web / REST — https://docs.spring.io/spring-framework/reference/web/webmvc.html
 - Bean Validation — https://docs.spring.io/spring-framework/reference/core/validation/beanvalidation.html
 
----
+---``
 
-## Day 3 — Real persistence (H2 → Postgres)
+## Day 3 — Real persistence (H2 → Postnd gres)
 
 > **As a** vet,
 > **I want** each cat's checkups and vaccinations recorded and kept permanently,
@@ -85,7 +85,7 @@ Introduce a real persistence layer. A cat now *has many* medical records (a chec
 
 **Official docs**
 - Spring Data JPA — https://docs.spring.io/spring-data/jpa/reference/
-- Hibernate ORM — https://hibernate.org/orm/documentation/
+- Hibernate ORM — https://hibernate.org/orm/documentatio n/
 - Spring Boot SQL data — https://docs.spring.io/spring-boot/reference/data/sql.html
 - H2 — https://www.h2database.com/html/main.html
 - PostgreSQL — https://www.postgresql.org/docs/current/
