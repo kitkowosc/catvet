@@ -3,7 +3,7 @@ day2.
 2. also doctor can have access to data about specific pacient
 3.
 
-## Day 2 curl commands (verified working)
+## Day 2 curl commands:
 
 GET all patients:
 curl -i localhost:8080/patients
@@ -22,3 +22,10 @@ curl -i -X PUT localhost:8080/patients/1 -H 'Content-Type: application/json' -d 
 
 DELETE patient -> 204:
 curl -i -X DELETE localhost:8080/patients/1
+
+## Day 3 curl commands:
+
+addVisit for patient:
+curl -s -X POST http://localhost:8080/patients/1/records 
+-H 'Content-Type: application/json' 
+-d '{"date":"2026-07-09","type":"0","notes":"gruby brzuszeczek"}

@@ -47,13 +47,13 @@ The service does almost nothing today — it just needs to *exist*, *build*, *ru
 Build the full set of cat operations over HTTP, holding data in memory (no database yet — that's deliberate, to isolate the web layer). A cat has at least: an id, a name, a species/breed, a date of birth, and an owner name.
 
 **Acceptance criteria**
-- [ ] `POST /cats` creates a cat and returns `201 Created` with the created resource (including a generated id).
-- [ ] `GET /cats` returns all cats; `GET /cats/{id}` returns one.
-- [ ] `GET /cats/{id}` for an unknown id returns `404 Not Found` (not a 500, not an empty 200).
-- [ ] `PUT /cats/{id}` updates an existing cat; `DELETE /cats/{id}` removes it and returns `204 No Content`.
-- [ ] Posting an invalid cat (e.g. blank name, missing required field) returns `400 Bad Request`, not a saved record.
-- [ ] The code is layered: a controller handles HTTP, a service holds logic, a repository holds the in-memory store — and you can explain why.
-- [ ] Every endpoint is demonstrably working via `curl` (keep the commands; you'll reuse them).
+- [x ] `POST /cats` creates a cat and returns `201 Created` with the created resource (including a generated id).
+- [x ] `GET /cats` returns all cats; `GET /cats/{id}` returns one.
+- [x ] `GET /cats/{id}` for an unknown id returns `404 Not Found` (not a 500, not an empty 200).
+- [x ] `PUT /cats/{id}` updates an existing cat; `DELETE /cats/{id}` removes it and returns `204 No Content`.
+- [x ] Posting an invalid cat (e.g. blank name, missing required field) returns `400 Bad Request`, not a saved record.
+- [x ] The code is layered: a controller handles HTTP, a service holds logic, a repository holds the in-memory store — and you can explain why.
+- [x ] Every endpoint is demonstrably working via `curl` (keep the commands; you'll reuse them).
 
 **Look into:** dependency injection and the problem it solves; Spring beans and the application context; why split controller/service/repository; `@RestController` and the mapping annotations; HTTP status codes and when to return each; DTOs vs internal objects; Bean Validation (`@Valid`, `@NotNull`, `@Size`); JSON ↔ Java via Jackson.
 
@@ -73,10 +73,10 @@ Build the full set of cat operations over HTTP, holding data in memory (no datab
 Introduce a real persistence layer. A cat now *has many* medical records (a checkup or a vaccination, each with a date and notes). The same code must run against H2 for local development and against a Dockerized PostgreSQL for "real" — switched by configuration alone.
 
 **Acceptance criteria**
-- [ ] Cats and their medical records are stored via Spring Data JPA repositories (no hand-written SQL for basic CRUD).
-- [ ] The cat → records relationship is modeled (one cat, many records).
-- [ ] `POST /cats/{id}/records` adds a medical record to a cat; `GET /cats/{id}/records` lists that cat's history.
-- [ ] With the dev profile active, the app uses H2 and starts with no external dependencies.
+- [x ] Cats and their medical records are stored via Spring Data JPA repositories (no hand-written SQL for basic CRUD).
+- [x ] The cat → records relationship is modeled (one cat, many records).
+- [x ] `POST /cats/{id}/records` adds a medical record to a cat; `GET /cats/{id}/records` lists that cat's history.
+- [x ] With the dev profile active, the app uses H2 and starts with no external dependencies.
 - [ ] With the Postgres profile active, the app connects to a PostgreSQL instance running in a Docker container — **no code changes**, only configuration.
 - [ ] Data written to Postgres survives an application restart (prove it: write, restart, read it back).
 - [ ] You can explain what `ddl-auto` is set to and why that setting is risky in production.
