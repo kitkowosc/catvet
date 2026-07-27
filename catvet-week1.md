@@ -77,9 +77,9 @@ Introduce a real persistence layer. A cat now *has many* medical records (a chec
 - [x ] The cat → records relationship is modeled (one cat, many records).
 - [x ] `POST /cats/{id}/records` adds a medical record to a cat; `GET /cats/{id}/records` lists that cat's history.
 - [x ] With the dev profile active, the app uses H2 and starts with no external dependencies.
-- [ ] With the Postgres profile active, the app connects to a PostgreSQL instance running in a Docker container — **no code changes**, only configuration.
-- [ ] Data written to Postgres survives an application restart (prove it: write, restart, read it back).
-- [ ] You can explain what `ddl-auto` is set to and why that setting is risky in production.
+- [x ] With the Postgres profile active, the app connects to a PostgreSQL instance running in a Docker container — **no code changes**, only configuration.
+- [x ] Data written to Postgres survives an application restart (prove it: write, restart, read it back).
+- [x ] You can explain what `ddl-auto` is set to and why that setting is risky in production.
 
 **Look into:** what an ORM is, and what JPA vs Hibernate each refer to; `@Entity`, `@Id`, `@GeneratedValue`; how Spring Data derives queries from method names; relationships (`@OneToMany`/`@ManyToOne`, owning side, the N+1 problem); Spring profiles and `application.yml`/`application-*.yml`; why H2 for dev and Postgres for real; running Postgres in Docker (ports, env vars, volumes); `ddl-auto`.
 

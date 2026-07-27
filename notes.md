@@ -29,3 +29,8 @@ addVisit for patient:
 curl -s -X POST http://localhost:8080/patients/1/records 
 -H 'Content-Type: application/json' 
 -d '{"date":"2026-07-09","type":"0","notes":"gruby brzuszeczek"}
+
+
+DOCKER RUN ->>
+docker run -d --name catvet-postgres -e POSTGRES_USER=catvet -e POSTGRES_PASSWORD=catvet
+-e POSTGRES_DB=catvet -p 5432:5432 -v catvet-pgdata:/var/lib/postgresql/data postgres:16
