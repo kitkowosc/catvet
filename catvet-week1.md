@@ -103,11 +103,11 @@ Introduce a real persistence layer. A cat now *has many* medical records (a chec
 No new features today — instead, lock in what exists with tests at two levels. The goal is confidence, not coverage numbers.
 
 **Acceptance criteria**
-- [ ] At least one **unit test** on a service class, with its dependencies mocked (the test does not touch a real database).
-- [ ] At least one **integration test** that exercises a real endpoint against H2 (e.g. POST a cat, then GET it back).
-- [ ] A test proves a negative path (e.g. fetching an unknown cat yields 404).
-- [ ] `mvn test` runs the whole suite and all tests pass.
-- [ ] You can explain the difference between your unit test and your integration test, and what mocking bought you in the unit test.
+- [x ] At least one **unit test** on a service class, with its dependencies mocked (the test does not touch a real database).
+- [x ] At least one **integration test** that exercises a real endpoint against H2 (e.g. POST a cat, then GET it back).
+- [x ] A test proves a negative path (e.g. fetching an unknown cat yields 404).
+- [x ] `mvn test` runs the whole suite and all tests pass.
+- [x ] You can explain the difference between your unit test and your integration test, and what mocking bought you in the unit test.
 
 **Look into:** unit vs integration tests and why have both; what mocking is for (Mockito `when`/`thenReturn`, `verify`); JUnit 5 basics (`@Test`, assertions, `@BeforeEach`); what `@SpringBootTest` spins up vs `@WebMvcTest`; "test behavior, not implementation"; Arrange-Act-Assert; testing the web layer with MockMvc.
 
