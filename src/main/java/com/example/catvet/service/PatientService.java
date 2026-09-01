@@ -5,10 +5,14 @@ import java.util.List;
 import com.example.catvet.entity.Patient;
 import com.example.catvet.exception.PatientNotFoundException;
 import com.example.catvet.repository.PatientRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PatientService {
+
+    private static final Logger log = LoggerFactory.getLogger(PatientService.class);
 
     private final PatientRepository repository;
 
@@ -26,7 +30,9 @@ public class PatientService {
     }
 
     public Patient create(Patient patient) {
-        return repository.save(patient);
+        Patient saved = repository.save(patient);
+        log.info("Registered patient {} ({})", saved.getId(), saved.getName());
+        return saved;
     }
 
     public Patient replace(Long id, Patient newPatient) {
@@ -41,5 +47,6 @@ public class PatientService {
 
     public void delete(Long id) {
         repository.deleteById(id);
+        log.info("Deleted patient {}", id);
     }
 }

@@ -40,7 +40,7 @@ The service does almost nothing today — it just needs to *exist*, *build*, *ru
 
 ## Day 2 — Cat REST API in memory
 
-``> **As a** vet clinic receptionist,
+> **As a** vet clinic receptionist,
 > **I want** to register cats and look them up, update them, and remove them,
 > **so that** the clinic has an up-to-date list of the cats it treats.
 
@@ -62,9 +62,9 @@ Build the full set of cat operations over HTTP, holding data in memory (no datab
 - Spring web / REST — https://docs.spring.io/spring-framework/reference/web/webmvc.html
 - Bean Validation — https://docs.spring.io/spring-framework/reference/core/validation/beanvalidation.html
 
----``
+---
 
-## Day 3 — Real persistence (H2 → Postnd gres)
+## Day 3 — Real persistence (H2 → Postgres)
 
 > **As a** vet,
 > **I want** each cat's checkups and vaccinations recorded and kept permanently,
@@ -85,7 +85,7 @@ Introduce a real persistence layer. A cat now *has many* medical records (a chec
 
 **Official docs**
 - Spring Data JPA — https://docs.spring.io/spring-data/jpa/reference/
-- Hibernate ORM — https://hibernate.org/orm/documentatio n/
+- Hibernate ORM — https://hibernate.org/orm/documentation/
 - Spring Boot SQL data — https://docs.spring.io/spring-boot/reference/data/sql.html
 - H2 — https://www.h2database.com/html/main.html
 - PostgreSQL — https://www.postgresql.org/docs/current/
@@ -127,10 +127,10 @@ No new features today — instead, lock in what exists with tests at two levels.
 This is the unglamorous layer tutorials skip but real work demands. If you arrive here ahead of schedule, take the optional Kafka stretch; if not, Kafka moves to Week 2 with no penalty.
 
 **Acceptance criteria (core)**
-- [ ] Errors return a consistent, structured response (e.g. a 404 and a 400 both return a clean JSON error body, not a stack trace).
-- [ ] The application logs meaningful events at appropriate levels (not via `System.out.println`).
-- [ ] A health endpoint reports the service is up.
-- [ ] A `README` exists that lets someone clone the repo and run the service (both profiles) without prior knowledge.
+- [x] Errors return a consistent, structured response (e.g. a 404 and a 400 both return a clean JSON error body, not a stack trace).
+- [x] The application logs meaningful events at appropriate levels (not via `System.out.println`).
+- [x] A health endpoint reports the service is up.
+- [x] A `README` exists that lets someone clone the repo and run the service (both profiles) without prior knowledge.
 
 **Acceptance criteria (optional Kafka stretch)**
 - [ ] Recording a vaccination publishes an event to a Kafka topic (Kafka running in Docker).

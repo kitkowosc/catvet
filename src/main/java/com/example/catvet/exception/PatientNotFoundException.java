@@ -1,9 +1,8 @@
 package com.example.catvet.exception;
 
-public class PatientNotFoundException extends  RuntimeException{
+public class PatientNotFoundException extends RuntimeException {
+
     public PatientNotFoundException(Long id) {
-        super(("Could not find patient" + id));
-
+        super("Could not find patient " + id);
     }
-
 }
