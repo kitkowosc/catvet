@@ -23,14 +23,14 @@ A junior developer learns SQL and databases as their own subject — not through
 Today is about meeting Postgres on its own terms — get it running, connect to it from psql and from IntelliJ, and create your first table by hand. No CatVet schema yet, no relationships yet. The goal is the loop: write SQL, run it, see the result, iterate.
 
 **Acceptance criteria**
-- [x ] Postgres (current stable, e.g. `postgres:18`) runs in a Docker container with a **named volume** so data survives `docker stop`/`start`.
-- [ ] `psql` is installed on the host (sudo apt install postgresql-client) and connects to the containerized Postgres directly — you also know how to fall back to `docker exec -it <container> psql ...`.
-- [ ] IntelliJ IDEA's **Database** tool window is connected to the same database; you can run a query from IntelliJ and see results.
-- [ ] You ran the same `SELECT` from both `psql` and IntelliJ, and can articulate when you'd reach for each client.
-- [ ] You created a new database (not the default `postgres`), connected to it, and built a `cats` table with at least: `id` (auto-generated primary key), `name`, `birth_date`, `breed`.
-- [ ] You inserted at least 5 cats and `SELECT *` returns them.
-- [ ] You're comfortable with `\l`, `\c`, `\dt`, `\d <table>`, `\q`, `\?`, and `\!` (shell escape).
-- [ ] You can articulate the difference between a Postgres **cluster**, **database**, **schema**, and **table** — and where your `cats` table actually lives.
+- [ x] Postgres (current stable, e.g. `postgres:18`) runs in a Docker container with a **named volume** so data survives `docker stop`/`start`.
+- [ x] `psql` is installed on the host (sudo apt install postgresql-client) and connects to the containerized Postgres directly — you also know how to fall back to `docker exec -it <container> psql ...`.
+- [ x] IntelliJ IDEA's **Database** tool window is connected to the same database; you can run a query from IntelliJ and see results.
+- [ x] You ran the same `SELECT` from both `psql` and IntelliJ, and can articulate when you'd reach for each client.
+- [ x] You created a new database (not the default `postgres`), connected to it, and built a `cats` table with at least: `id` (auto-generated primary key), `name`, `birth_date`, `breed`.
+- [ x] You inserted at least 5 cats and `SELECT *` returns them.
+- [ x] You're comfortable with `\l`, `\c`, `\dt`, `\d <table>`, `\q`, `\?`, and `\!` (shell escape).
+- [ x] You can articulate the difference between a Postgres **cluster**, **database**, **schema**, and **table** — and where your `cats` table actually lives.
 
 **Look into:** running Postgres in Docker (env vars `POSTGRES_USER`/`POSTGRES_PASSWORD`/`POSTGRES_DB`, port mapping, the data volume `/var/lib/postgresql/data`); installing the `postgresql-client` package on Ubuntu (gives you `psql` without a server); psql as a client vs Postgres as a server; psql meta-commands (`\` commands) vs SQL statements; the IntelliJ Database tool — adding a data source, console vs table editor, parameter prompts; when CLI beats GUI (scripting, repeatability, ssh) and when GUI beats CLI (browsing, joins-by-click, schema diagrams); basic data types (`INTEGER`, `TEXT` vs `VARCHAR(n)`, `DATE`, `TIMESTAMP`, `BOOLEAN`, `NUMERIC`); auto-generated keys (`SERIAL` vs `GENERATED ... AS IDENTITY`); the difference between `\d` and a SQL query against `information_schema`.
 
