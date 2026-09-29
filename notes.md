@@ -179,3 +179,49 @@ SELECT o.full_name, c1.name, c2.name FROM cats c1 JOIN cats c2 ON c2.owner_id = 
 - ta sama tabela dwa razy, pod dwoma aliasami
 - warunek c1.id < c2.id: bez niego 66 wierszy (kot sam ze soba + pary lustrzane),
   z c1.id <> c2.id 36, z c1.id < c2.id 18 (kazda para raz)
+
+## Podsumowanie tygodnia 2 (SQL) - 2026-09-29
+
+### INNER JOIN vs LEFT JOIN
+
+Jedna zmienna, ktora je rozroznia: czy wiersz musi miec pare, zeby trafic do wyniku.
+- INNER JOIN: wiersz bez pary jest wyrzucany.
+- LEFT JOIN: kazdy wiersz z LEWEJ tabeli (tej po FROM) zostaje, a kolumny z prawej
+  dostaja NULL.
+- LEFT JOIN jest asymetryczny: wiersz z PRAWEJ tabeli bez pary znika.
+
+SELECT o.full_name, c.name FROM owners o LEFT JOIN cats c ON c.owner_id = o.id WHERE c.id IS NULL;
+
+- wzorzec "znajdz sieroty" (wlasciciele bez kotow), drugi sposob obok NOT EXISTS
+
+### NULL i logika trojwartosciowa
+
+- NULL = brak wartosci. To nie jest pusty napis '' ani 0.
+- porownanie zwraca true, false albo unknown (NULL)
+- kazde porownanie z NULL daje unknown, nawet NULL = NULL
+- WHERE przepuszcza TYLKO true. Wiersze z false i unknown odpadaja.
+- o NULL pytamy tylko przez IS NULL / IS NOT NULL, nigdy przez = NULL
+
+SELECT NULL <> 'unknown', NULL = NULL;   -- oba wyniki: NULL (w psql puste pole)
+
+WHERE phone <> 'unknown'                  -- gubi wlascicieli z phone = NULL
+WHERE phone <> 'unknown' OR phone IS NULL -- zachowuje ich
+
+- przy kazdym <> na kolumnie, ktora moze byc NULL: czy NULL-e maja zostac w wyniku?
+  Jesli tak, dopisz OR kolumna IS NULL.
+
+PROTIP: \pset null '∅' w psql, wtedy NULL widac jako ∅, a nie puste pole.
+
+### Self join na pary: <> vs <
+
+<> znaczy "rozne od" (jak != w Javie).
+
+Przyklad: Mruczek (id=1), Filemon (id=2), ta sama wlascicielka.
+- bez warunku:      (M,M) (M,F) (F,M) (F,F)  -> 4
+- c1.id <> c2.id:   (M,F) (F,M)              -> 2  (bez kota w parze z samym soba)
+- c1.id < c2.id:    (M,F)                    -> 1  (bez lustrzanych duplikatow)
+
+Stad 66 -> 36 -> 18 w bazie catvet_sql:
+- 66 = wszystkie kombinacje, z parami "kot + on sam"
+- 36 = 66 - 30 (30 kotow, kazdy raz sam ze soba)
+- 18 = 36 / 2 (kazda para byla dwa razy, raz w kazda strone)
