@@ -52,13 +52,13 @@ Today is about meeting Postgres on its own terms — get it running, connect to 
 Today you design the full schema yourself, write it as a runnable SQL script, and seed it. The point is learning what constraints actually do — try to violate them and watch the database refuse.
 
 **Acceptance criteria**
-- [ ] A `schema.sql` script creates the full schema from a clean database: `owners`, `cats`, `visits`, `medications`, and a join table connecting visits to medications (with its own columns like `dosage`, `duration_days`).
-- [ ] Foreign keys enforce the relationships. Attempting to insert a cat for a nonexistent owner fails; attempting to delete an owner who still has cats fails — unless you've chosen `ON DELETE CASCADE` and can justify it.
-- [ ] At minimum these constraints exist somewhere in the schema: `PRIMARY KEY`, `NOT NULL` on required fields, `UNIQUE` on something that should be (e.g. owner email), and at least one `CHECK` constraint that catches real bad data (e.g. `birth_date <= CURRENT_DATE`).
-- [ ] A `seed.sql` script inserts a meaningful sample: ~20 owners, ~30 cats, ~50 visits, ~10 medications, plus join rows. Real-ish names and dates, not `aaa`/`bbb`.
-- [ ] Both scripts are **idempotent**: running them on a clean database works; running them twice produces a predictable outcome (your choice — usually `DROP TABLE ... CASCADE` at the top of `schema.sql`).
-- [ ] Both scripts are committed to the git repo.
-- [ ] You can explain, in plain words: primary key vs unique constraint; `ON DELETE CASCADE` vs `ON DELETE RESTRICT` vs `ON DELETE SET NULL`; why the visit-medication join table has its own primary key (composite or surrogate).
+- [ x] A `schema.sql` script creates the full schema from a clean database: `owners`, `cats`, `visits`, `medications`, and a join table connecting visits to medications (with its own columns like `dosage`, `duration_days`).
+- [ x] Foreign keys enforce the relationships. Attempting to insert a cat for a nonexistent owner fails; attempting to delete an owner who still has cats fails — unless you've chosen `ON DELETE CASCADE` and can justify it.
+- [ x] At minimum these constraints exist somewhere in the schema: `PRIMARY KEY`, `NOT NULL` on required fields, `UNIQUE` on something that should be (e.g. owner email), and at least one `CHECK` constraint that catches real bad data (e.g. `birth_date <= CURRENT_DATE`).
+- [ x] A `seed.sql` script inserts a meaningful sample: ~20 owners, ~30 cats, ~50 visits, ~10 medications, plus join rows. Real-ish names and dates, not `aaa`/`bbb`.
+- [ x] Both scripts are **idempotent**: running them on a clean database works; running them twice produces a predictable outcome (your choice — usually `DROP TABLE ... CASCADE` at the top of `schema.sql`).
+- [ x] Both scripts are committed to the git repo.
+- [ x] You can explain, in plain words: primary key vs unique constraint; `ON DELETE CASCADE` vs `ON DELETE RESTRICT` vs `ON DELETE SET NULL`; why the visit-medication join table has its own primary key (composite or surrogate).
 
 **Look into:** schema design and normalization (just to the level where you stop duplicating data — 3NF is plenty); primary keys (surrogate vs natural); foreign keys and referential actions; `NOT NULL`, `UNIQUE`, `CHECK` constraints; many-to-many via a join table; surrogate vs composite keys on join tables; reading and writing SQL scripts; loading a script with `psql -f` or IntelliJ's "Run script" action.
 
@@ -79,15 +79,15 @@ Today you design the full schema yourself, write it as a runnable SQL script, an
 Today is `SELECT` muscle. One table at a time (mostly) — you'll combine tables tomorrow. The aim is fluency with filtering, sorting, and the standard functions you reach for every day.
 
 **Acceptance criteria**
-- [ ] You can write queries answering at least: "cats born after 2020", "cats whose name contains 'mit' case-insensitively", "owners with no phone number on file", "the 10 most recently registered cats".
-- [ ] You've used each of: `=`, `<>`, `<`, `>`, `BETWEEN`, `IN (...)`, `LIKE`, `ILIKE`, `IS NULL`.
-- [ ] You used `DISTINCT` to deduplicate, multi-column `ORDER BY`, and `LIMIT`/`OFFSET` to paginate.
-- [ ] You computed a cat's age in years from `birth_date` using date arithmetic, and chose between integer years or full interval display deliberately.
-- [ ] You used a `CASE` expression in the `SELECT` list to bucket cats (e.g. `'kitten' | 'adult' | 'senior'`) based on age.
-- [ ] You used `COALESCE` to substitute a default for a `NULL` value in the output.
-- [ ] You can explain three-valued logic in your own words: why `WHERE phone <> 'unknown'` excludes rows where `phone IS NULL`, and how to write the predicate so it includes them.
-- [ ] You saved at least 5 useful queries to a `.sql` file in the repo (your reference library).
-
+- [ x] You can write queries answering at least: "cats born after 2020", "cats whose name contains 'mit' case-insensitively", "owners with no phone number on file", "the 10 most recently registered cats".
+- [ x] You've used each of: `=`, `<>`, `<`, `>`, `BETWEEN`, `IN (...)`, `LIKE`, `ILIKE`, `IS NULL`.
+- [ x] You used `DISTINCT` to deduplicate, multi-column `ORDER BY`, and `LIMIT`/`OFFSET` to paginate.
+- [ x] You computed a cat's age in years from `birth_date` using date arithmetic, and chose between integer years or full interval display deliberately.
+- [ x] You used a `CASE` expression in the `SELECT` list to bucket cats (e.g. `'kitten' | 'adult' | 'senior'`) based on age.
+- [ x] You used `COALESCE` to substitute a default for a `NULL` value in the output.
+- [ x] You can explain three-valued logic in your own words: why `WHERE phone <> 'unknown'` excludes rows where `phone IS NULL`, and how to write the predicate so it includes them.
+- [ x] You saved at least 5 useful queries to a `.sql` file in the repo (your reference library).
+lenie 
 **Look into:** the parts of a `SELECT` statement and the order they're written vs evaluated; the difference between `LIKE` and `ILIKE`; pattern wildcards (`%` and `_`); `IS NULL` vs `= NULL` (and why the latter never matches); date/time arithmetic and functions (`AGE`, `EXTRACT`, `CURRENT_DATE`, `NOW()`); string functions (`LOWER`, `UPPER`, `CONCAT`, `LENGTH`, `SUBSTRING`); numeric functions; `CASE` expressions; `COALESCE` and `NULLIF`.
 
 **Official docs**
